@@ -7,7 +7,7 @@ class App extends React.Component {
 
 
   onSaveButtonClick() {
-    const dai_obj = main();
+    const dai_obj = main;
     this.setState({ id: dai_obj.vault_id, debtvalue: dai_obj.vault_debtvalue })
 
   }
@@ -28,9 +28,9 @@ class App extends React.Component {
                   <button
                     type="button"
                     className="btn btn-outline-dark btn-lg"
-                    onClick={()=>this.onSaveButtonClick}
+                    onClick={()=>this.onSaveButtonClick()}
                   >
-                    Save without click
+                    Save
                   </button>
                 </div>
                 <div className="col-md-6 text-left">
