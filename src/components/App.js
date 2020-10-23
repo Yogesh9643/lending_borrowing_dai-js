@@ -1,5 +1,6 @@
 import React from 'react'
-import {main} from '../dai-js/CreateNewVault'
+// import {main} from '../dai-js/CreateNewVault'
+import {fn} from '../dai-js/testFn';
 
 
 class App extends React.Component {
@@ -7,8 +8,9 @@ class App extends React.Component {
 
 
   onSaveButtonClick() {
-    const dai_obj = main;
-    this.setState({ id: dai_obj.vault_id, debtvalue: dai_obj.vault_debtvalue })
+    const dai_obj = fn();
+    this.setState({ id: dai_obj })
+    console.log(this.state.id);
 
   }
 
@@ -28,7 +30,7 @@ class App extends React.Component {
                   <button
                     type="button"
                     className="btn btn-outline-dark btn-lg"
-                    onClick={()=>this.onSaveButtonClick()}
+                    onClick={this.onSaveButtonClick}
                   >
                     Save
                   </button>
@@ -64,7 +66,7 @@ class App extends React.Component {
                   </button>
                   <div>
                     Vault id is = {this.props.id}
-                    Vault debt is = {this.props.d_vaultdebt}
+                    {/* Vault debt is = {this.props.d_vaultdebt} */}
                   </div>
                 </div>
                 <div className="col-md-6 text-left">
