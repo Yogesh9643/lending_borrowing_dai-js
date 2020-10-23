@@ -1,45 +1,46 @@
-// const Maker = require("@makerdao/dai");
-// const { McdPlugin, ETH, DAI } = require("@makerdao/dai-plugin-mcd");
-// const { infuraKey, myPrivateKey } = require("./config");
+const Maker = require("@makerdao/dai");
+const { McdPlugin, ETH, DAI } = require("@makerdao/dai-plugin-mcd");
+const { infuraKey, myPrivateKey } = require("./config");
 
-// main();
+main();
 
-// async function main() {
-//   try {
+async function main() {
+  try {
    
-//     const maker = await Maker.create("http", {
-//       plugins: [McdPlugin],
-//       url: `https://kovan.infura.io/v3/${infuraKey}`,
-//       privateKey: myPrivateKey,
-//     });
+    const maker = await Maker.create("http", {
+      plugins: [McdPlugin],
+      url: `https://kovan.infura.io/v3/${infuraKey}`,
+      privateKey: myPrivateKey,
+    });
 
-//     // verify that the private key was read correctly
-//     console.log(maker.currentAddress());
+    // verify that the private key was read correctly
+    console.log(maker.currentAddress());
 
-//     // make sure the current account owns a proxy contract;
-//     // create it if needed. the proxy contract is used to
-//     // perform multiple operations in a single transaction
-//     await maker.service("proxy").ensureProxy();
+    // make sure the current account owns a proxy contract;
+    // create it if needed. the proxy contract is used to
+    // perform multiple operations in a single transaction
+    await maker.service("proxy").ensureProxy();
 
-//     // use the "vault manager" service to work with vaults
-//     const manager = await maker.service("mcd:cdpManager");
+    // use the "vault manager" service to work with vaults
+    const manager = await maker.service("mcd:cdpManager");
 
-//     // ETH-A is the name of the collateral type; in the future,
-//     // there could be multiple collateral types for a token with
-//     // different risk parameters
-//     const vault = await manager.openLockAndDraw(
-//       "ETH-A",
-//       ETH(Number(0.7)),
-//       DAI(Number(150))
-//     );
+    // ETH-A is the name of the collateral type; in the future,
+    // there could be multiple collateral types for a token with
+    // different risk parameters
+    const vault = await manager.openLockAndDraw(
+      "ETH-A",
+      ETH(Number(1)),
+      DAI(Number(100))
+    );
 
-//     let vault_id =(vault.id);
-//      let vault_debtvalue=(vault.debtValue); // '150.00 DAI'
-//      return {vault_id,vault_debtvalue};
-//   } catch (err) {
-//     console.log(err);
-//   }
-// }
+    console.log(vault.id);
+    let d_id=vault.id;
+    console.log(vault.debtValue); // '150.00 DAI'
+    let d_value=vault.debtValue;
+    return{d_id,d_value};
+  } catch (err) {
+    console.log(err);
+  }
+}
 
-// export {main};
 
